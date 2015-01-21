@@ -34,7 +34,9 @@
       </div>
 
       <div class="question">
-        <p>Click here to show instructions</p>
+        <p><label class="instruction_button">Click here to show instructions</label></p><br/>
+        <p>or</p>
+        <p><label class="start_button">Start</label></p>
       </div>
       <div class="answer">
         <p>Upload your comma-separated questions above. Each question goes on a separate line.</p>
@@ -42,6 +44,7 @@
         <p>Fun fact: This application uses the <a href="http://en.wikipedia.org/wiki/Leitner_system" target="_blank">Leitner System</a>. Enjoy!</p>
       </div>
 
+		<!--
       <div class="controls">
         <div class="correct">
           <label class="icon-checkmark"></label>
@@ -50,9 +53,12 @@
           <label class="icon-close"></label>
         </div>
       </div>
+      -->
       
       <div  id="progressbar" class="progressbar">
       </div>
+      
+      
 
       <div class="footer">
         <div class="stats">
@@ -65,6 +71,7 @@
       </div>
 
 		<!--Menu window---------------------------------------------- -->
+		
 		
 		<div class="menu">
 			<div class="menu-header">
@@ -96,11 +103,11 @@
 								</tr>
 								<tr>
 									<td>Max Time:</td>
-									<td><input type="text" name="maxTime" id="maxTime" style="width: 40px" class="textbox"></input>&nbsp;&nbsp;sec</td>
+									<td><input type="text" name="maxSecondsUntilWrong" id="maxSecondsUntilWrong" style="width: 40px" class="textbox"></input>&nbsp;&nbsp;sec</td>
 								</tr>
 								<tr>
 									<td>Answer disp. Time:</td>
-									<td><input type="text" name="dispTime" id="dispTime" style="width: 40px" class="textbox"></input>&nbsp;&nbsp;sec</td>
+									<td><input type="text" name="secsBeforeCorrectDisplayed" id="secsBeforeCorrectDisplayed" style="width: 40px" class="textbox"></input>&nbsp;&nbsp;sec</td>
 								</tr>
 							
 							</table>
@@ -135,8 +142,6 @@
 	
 
     </div>
-    
-	
     
     <script src="example.js"></script>
   </body>

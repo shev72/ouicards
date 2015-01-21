@@ -16,8 +16,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  max-height: 800px;
-  #background-color: blue;
+  max-height: 850px;
+ # background-color: blue;
 }
 
 /**************************
@@ -61,6 +61,51 @@ body {
 	width: 30px;
 	height: 30px;
 	padding-top: 5px;
+	-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/**************************
+		Start Button
+**************************/
+.start_button{
+	text-align: center;
+	#width: 30px;
+	height: 30px;
+	font-weight: bold;
+	text-transform: uppercase;
+	#color: #ccc;
+	background-color: #7dce90;
+	#background: -webkit-linear-gradient(#888, #7dce90);
+	#background: linear-gradient(#888, #7dce90);
+	border: 0 none;
+	#text-shadow: 0 -1px 0 #000;
+	cursor: pointer;
+	padding: 5px 5px 5px 5px ;
+	margin-left: 10px;
+	-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/**************************
+		Instruction Button
+**************************/
+.instruction_button{
+	#text-align: center;
+	#width: 30px;
+	height: 30px;
+	font-weight: bold;
+	#text-transform: uppercase;
+	border: 0 none;
+	#text-shadow: 0 -1px 0 #000;
+	cursor: pointer;
+	#float: left;
+	#margin-top: 80px;
+	padding-left: 10px;
 	-webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -317,7 +362,7 @@ body {
 	display: block;
 	position: absolute;
 	width: 100%;
-	bottom: 80px;
+	bottom: 30px;
 }
 
 /*
@@ -337,6 +382,7 @@ body {
   font-size: .8em;
   padding: 6px;
   height: 30px;
+  width: 100%;
 }
 
 .stats {

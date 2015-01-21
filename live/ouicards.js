@@ -1,6 +1,6 @@
 ;(function(exports) {
 	
-	
+
   function loadFromArray(array) {
     ouicards.flashcards = array;
     resetBuckets();

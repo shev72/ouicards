@@ -12,7 +12,7 @@ var hprogressThread;
 var progressTimerLaunched = false;
 
 $(document).ready(function() {//alert(localStorage.settings);
-	
+		
   // Load default questions if no flashcards are found in localStorage
   if (!localStorage.flashcards || localStorage.flashcards === '[]')
     ouicards.loadFromArray(myFlashcards);
@@ -118,6 +118,7 @@ function initializeHandlers() {
 	});
 
   // Correct and wrong answer functionality
+  /*
   $('.correct').on('click', function() {
     if (!start) {
       console.log(start);
@@ -142,7 +143,7 @@ function initializeHandlers() {
     changeQuestion();
     if(ouicards.settings['mode'] == 's') updateFooter();
   });
-
+*/
 
   function changeQuestion() {
     var newQuestion = ouicards.next();
@@ -333,12 +334,36 @@ function initializeHandlers() {
   }
 
   $('.question').on('click', function() {
-    $('.answer p').show();
+    if(start) $('.answer p').show();
+    else return;
+    
+    if(ouicards.settings['mode'] == 's') ouicards.correct();
+    changeQuestion();
+    if(ouicards.settings['mode'] == 's') updateFooter();
   });
 
   $('.answer').on('click', function() {
-    $('.answer p').show();
+    if(start)$('.answer p').show();
+    else return;
+    
+    if(ouicards.settings['mode'] == 's') ouicards.wrong();
+    //changeQuestion();
+    if(ouicards.settings['mode'] == 's') updateFooter();
   });
+  
+  $('.instruction_button').on('click', function() {
+    $('.answer p').show();
+  }); 
+  
+  $('.start_button').on('click', function() {
+    if (!start) {
+      console.log(start);
+      start = true;
+      changeQuestion();
+      return;
+    }
+  }); 
+  
 
   // Update footer info
   function updateFooter() {
@@ -375,7 +400,7 @@ function resizeWin(){
 		n_height = b_height;
 		n_width = b_height * ratio;
 	}
-
+	
 	margin_top = -n_height/2;
 	margin_left = -n_width/2;	
 	
@@ -386,34 +411,42 @@ function resizeWin(){
 	
 	//Also set question and answer area automatically	
 	
+	var n_height_max = win.css("max-height").replace(/[^-\d\.]/g, ''); if(n_height > n_height_max)n_height = n_height_max;
 	var question = $(".question");
 	var answer = $(".answer");
 	var header_height = 35;//as defined in the style sheet 
 	var footer_height = 30;//as defined in the style sheet 
-	var controls_height = 50;//as defined in the style sheet 
-	var remaining_height = n_height - (header_height + footer_height + controls_height);
+	var progressBar_height = 30;
+	//var controls_height = 50;//as defined in the style sheet 
+	var remaining_height = n_height - (header_height + footer_height + progressBar_height );
 	
 	if(n_height > n_width){
-		question.css({"height":remaining_height / 3 +"px"});		
+		question.css({"height":remaining_height / 2 +"px"});		
 		
 		question.css({"top":header_height+"px"});
-		answer.css({"top":remaining_height / 3 + 30 +"px"});
+		answer.css({"top":remaining_height / 2 + header_height +"px"});
 		
 		question.css({"bottom":"auto"});
-		answer.css({"bottom":footer_height+controls_height+"px"});
+		if(ouicards.settings["mode"]=='s') answer.css({"bottom":footer_height + progressBar_height +"px"});
+		else answer.css({"bottom":footer_height +"px"});
 		
 		question.css({"width":"100%"});
 		answer.css({"width":"100%"});
 		
 		question.css({"left":"0"});
-		answer.css({"left":"50%"});
+		answer.css({"left":"0"});
 		
 	}else{
 		question.css({"top":header_height+"px"});
 		answer.css({"top":header_height+"px"});
 		
-		question.css({"bottom":footer_height+controls_height+"px"});
-		answer.css({"bottom":footer_height+controls_height+"px"});
+		if(ouicards.settings["mode"]=='s'){
+			question.css({"bottom":footer_height+progressBar_height+"px"});
+			answer.css({"bottom":footer_height+progressBar_height+"px"});
+		}else{
+			question.css({"bottom":footer_height+"px"});
+			answer.css({"bottom":footer_height+"px"});
+		}
 		
 		question.css({"width":"50%"});
 		answer.css({"width":"50%"});
