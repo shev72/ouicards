@@ -164,7 +164,14 @@
     localStorage.settings = JSON.stringify(ouicards.settings);
   }
 
-  function getFromLS() {
+    function randomizeBuckets() {
+        ouicards.bucketA.sort(function () { return (Math.round(Math.random()) - 0.5); });
+        ouicards.bucketB.sort(function () { return (Math.round(Math.random()) - 0.5); });
+        ouicards.bucketC.sort(function () { return (Math.round(Math.random()) - 0.5); });
+
+    }
+
+    function getFromLS() {
     ouicards.flashcards    = JSON.parse(localStorage.flashcards || '[]');
     ouicards.bucketA       = JSON.parse(localStorage.bucketA    || '[]');
     ouicards.bucketB       = JSON.parse(localStorage.bucketB    || '[]');
@@ -210,7 +217,8 @@
     saveToLS:           saveToLS,
     getFromLS:          getFromLS,
     resetBuckets:       resetBuckets,
-    settings:				{},
+    settings: {},
+    randomizeBuckets:randomizeBuckets,
     loadSettingsFromArray:      loadSettingsFromArray,
     saveSettingsToLS:	saveSettingsToLS,
     getSettingsFromLS:	getSettingsFromLS,
@@ -222,9 +230,18 @@
 
 // jQuery magic
   var showNext = function() {
-    var result = next();
-    $('#current-question').first().html(result['question']);
-    $('#current-answer').first().hide().html(result['answer']);
+      var result = next();
+      var q, a;
+      if (ouicards.settings['RndSide']) {
+          q = result['question'];
+          a = result['answer'];
+      } else {
+          a = result['question'];
+          q= result['answer'];
+      }   
+      
+    $('#current-question').first().html(q);
+    $('#current-answer').first().hide().html(a);
   };
 
   $.fn.ouicards = function() {
