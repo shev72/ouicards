@@ -39,21 +39,10 @@
         <p><label class="start_button">Start</label></p>
       </div>
       <div class="answer">
-        <p>Upload your comma-separated questions above. Each question goes on a separate line.</p>
-        <p>To reveal an answer click on the dark-blue question area (like you just did) or click this answer section.</p>
-        <p>Fun fact: This application uses the <a href="http://en.wikipedia.org/wiki/Leitner_system" target="_blank">Leitner System</a>. Enjoy!</p>
+        <p>Upload your comma-separated questions above. 1 per Line</p>
+        <p>To reveal an answer click on the dark-blue question area or click this answer section.</p>
+        <p>Application uses the powerful<a href="http://en.wikipedia.org/wiki/Leitner_system" target="_blank">Leitner System</a>. Essentially cards which need more work are repeated more often</p>
       </div>
-
-		<!--
-      <div class="controls">
-        <div class="correct">
-          <label class="icon-checkmark"></label>
-        </div>
-        <div class="wrong">
-          <label class="icon-close"></label>
-        </div>
-      </div>
-      -->
       
       <div  id="progressbar" class="progressbar">
       </div>
@@ -96,11 +85,19 @@
 						<form>
 						
 							<table>
-								<tr>
-									<td colspan="2">
-										<label><input type="checkbox" name="useProgressBar" id="useProgressBar">Progress Bar (Only on study mode)</label>
-									</td>
-								</tr>
+							    <tr>
+							        <td colspan="2">
+							            <label><input type="checkbox" name="useProgressBar" id="useProgressBar">Progress Bar (Only on study mode)</label>
+							        </td>
+							    </tr>
+                                <tr>
+                                    <td>
+                                        <label><input type="checkbox" name="RndOrder" id="RndOrder">RndOrder</label>
+                                    </td>
+                                    <td>
+                                        <label><input type="checkbox" name="RndSide" id="RndSide">RndSide</label>
+                                    </td>
+                                </tr>
 								<tr>
 									<td>Max Time:</td>
 									<td><input type="text" name="maxSecondsUntilWrong" id="maxSecondsUntilWrong" style="width: 40px" class="textbox"></input>&nbsp;&nbsp;sec</td>
