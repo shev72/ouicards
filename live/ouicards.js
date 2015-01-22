@@ -231,14 +231,16 @@
 // jQuery magic
   var showNext = function() {
       var result = next();
-      var q, a;
+      var q, a,t;
+      q = result['question'];
+      a = result['answer'];
       if (ouicards.settings['RndSide']) {
-          q = result['question'];
-          a = result['answer'];
-      } else {
-          a = result['question'];
-          q= result['answer'];
-      }   
+          if (Math.random() < .5) {
+              t = a;
+              a = q;
+              q = t;
+          }
+      }
       
     $('#current-question').first().html(q);
     $('#current-answer').first().hide().html(a);
