@@ -108,7 +108,10 @@ function initializeHandlers() {
 			
 		}else{
 			ouicards.settings['mode'] = 's';
-			$("#progressbar").css({"display": "block"});
+			$("#progressbar").css({ "display": "block" });
+            if (ouicards.settings['RndOrder']) {
+                ouicards.randomizeBuckets();
+            }
 		}
 		$('.mode-icon').text(ouicards.settings['mode']);
 		
@@ -312,6 +315,12 @@ function initializeHandlers() {
   	tmp = $("#useProgressBar").prop('checked');
   	ouicards.settings['useProgressBar'] = tmp;
   	
+  	tmp = $("#RndSide").prop('checked');
+  	ouicards.settings['RndSide'] = tmp;
+
+  	tmp = $("#RndOrder").prop('checked');
+  	ouicards.settings['RndOrder'] = tmp;
+
   	ouicards.saveSettingsToLS();
   	
   	$( "#progressbar" ).progressbar({
@@ -323,7 +332,10 @@ function initializeHandlers() {
   
   function showSettings(){
   	
-  	$("#useProgressBar").prop('checked',ouicards.settings['useProgressBar']);
+      $("#useProgressBar").prop('checked', ouicards.settings['useProgressBar']);
+      $("#RndOrder").prop('checked', ouicards.settings['RndOrder']);
+      $("#RndSide").prop('checked', ouicards.settings['RndSide']);
+
   	$('#maxSecondsUntilWrong').val(ouicards.settings['maxSecondsUntilWrong']);
   	$('#secsBeforeCorrectDisplayed').val(ouicards.settings['secsBeforeCorrectDisplayed']);
   	
